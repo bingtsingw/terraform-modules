@@ -1,7 +1,7 @@
 terraform {
   required_providers {
     acme = {
-      source  = "vancluever/acme"
+      source = "vancluever/acme"
     }
   }
 }

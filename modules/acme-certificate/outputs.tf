@@ -10,7 +10,7 @@ output "issuer_pem" {
 
 output "fullchain_pem" {
   description = "The certificate concatenated with the issuer."
-  value = "${trimspace(acme_certificate.certificate.certificate_pem)}\n${acme_certificate.certificate.issuer_pem}"
+  value       = "${trimspace(acme_certificate.certificate.certificate_pem)}\n${acme_certificate.certificate.issuer_pem}"
 }
 
 output "private_key_pem" {
