@@ -59,6 +59,44 @@ terraform import module.$MODULE.alicloud_ram_policy.policy $POLICY_NAME
 terraform import module.$MODULE.alicloud_ram_user_policy_attachment.attach $ATTACHMENT_ID
 ```
 
+### aliyun-fc-service
+
+usage:
+
+```hcl
+module "MODULE" {
+  source = "github.com/bingtsingw/terraform-modules.git//modules/aliyun-fc-service?ref=vx.x.x"
+
+  name              = "fc-example-project"
+  internet_access   = false
+  vpc_config        = false
+  policy_document   = <<EOF
+  {
+    "Statement": [
+      {
+          "Action": [
+              "log:PostLogStoreLogs"
+          ],
+          "Resource": "*",
+          "Effect": "Allow"
+      },
+      {
+          "Action": [
+              "cr:GetRepository",
+              "cr:GetRepositoryTag",
+              "cr:GetAuthorizationToken",
+              "cr:PullRepository"
+          ],
+          "Resource": "*",
+          "Effect": "Allow"
+      }
+    ],
+    "Version": "1"
+  }
+  EOF
+}
+```
+
 ### updown-check
 
 usage:
