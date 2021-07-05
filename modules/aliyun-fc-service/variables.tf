@@ -2,12 +2,39 @@ variable "name" {
   type = string
 }
 
-variable "internet_access" {
-  type = bool
+variable "resource_group_id" {
+  type    = string
+  default = null
 }
 
-variable "policy_document" {
-  type = string
+variable "log_shard_count" {
+  type    = number
+  default = 1
+}
+
+variable "log_retention_period" {
+  type    = number
+  default = 3650
+}
+
+variable "policy_document_dev" {
+  type    = string
+  default = null
+}
+
+variable "policy_document_prod" {
+  type    = string
+  default = null
+}
+
+variable "policy_document_template_dev" {
+  type    = string
+  default = null
+}
+
+variable "policy_document_template_prod" {
+  type    = string
+  default = null
 }
 
 variable "vpc_config" {
@@ -19,12 +46,52 @@ variable "vpc_id" {
   default = null
 }
 
-variable "vswitch_ids" {
+variable "vpc_vswitch_ids" {
   type    = list(string)
   default = null
 }
 
-variable "resource_group_id" {
+variable "fc_internet_access" {
+  type = bool
+}
+
+variable "fc_memory_size" {
   type    = string
-  default = null
+  default = "128"
+}
+
+variable "fc_runtime" {
+  type    = string
+  default = "custom-container"
+}
+
+variable "fc_handler" {
+  type    = string
+  default = "index.handler"
+}
+
+variable "fc_timeout" {
+  type    = number
+  default = 60
+}
+
+variable "fc_instance_concurrency" {
+  type    = number
+  default = 100
+}
+
+variable "fc_custom_container_image" {
+  type = string
+}
+
+variable "fc_domain" {
+  type = string
+}
+
+variable "cert" {
+  type = string
+}
+
+variable "cert_key" {
+  type = string
 }
