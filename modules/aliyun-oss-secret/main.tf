@@ -1,7 +1,12 @@
+locals {
+  resources = formatlist("\"acs:oss:*:%s:%s/%s\"", var.account_id, var.bucket, var.file_paths)
+}
 resource "alicloud_oss_bucket_object" "oss" {
+  count = var.file_count
+
   bucket  = var.bucket
-  key     = var.key
-  content = var.content
+  key     = var.file_paths[count.index]
+  content = var.file_contents[count.index]
 }
 
 module "ram-user-oss" {
@@ -14,7 +19,7 @@ module "ram-user-oss" {
       {
         "Effect": "Allow",
         "Action": "oss:GetObject",
-        "Resource": "acs:oss:*:${var.account_id}:${var.bucket}/${var.key}"
+        "Resource": [${join(", ", local.resources)}]
       }
     ],
     "Version": "1"

@@ -1,8 +1,8 @@
-variable "content" {
+variable "account_id" {
   type = string
 }
 
-variable "key" {
+variable "ram_name" {
   type = string
 }
 
@@ -10,10 +10,14 @@ variable "bucket" {
   type = string
 }
 
-variable "account_id" {
-  type = string
+variable "file_count" {
+  type = number
 }
 
-variable "ram_name" {
-  type = string
+variable "file_paths" {
+  type = list(string)
+}
+
+variable "file_contents" {
+  type = list(string)
 }
