@@ -11,4 +11,8 @@ resource "alicloud_oss_bucket" "bucket" {
     target_bucket = var.log
     target_prefix = "oss-access/${var.bucket}/"
   }
+
+  transfer_acceleration {
+    enabled = false
+  }
 }
