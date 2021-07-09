@@ -5,10 +5,14 @@ resource "alicloud_db_database" "database" {
 }
 
 resource "alicloud_db_account" "account" {
-  instance_id = var.instance
-  type        = "Normal"
-  name        = var.account
-  password    = var.password
+  db_instance_id   = var.instance
+  account_type     = "Normal"
+  account_name     = var.account
+  account_password = var.password
+
+  lifecycle {
+    create_before_destroy = true
+  }
 }
 
 resource "alicloud_db_account_privilege" "privilege" {

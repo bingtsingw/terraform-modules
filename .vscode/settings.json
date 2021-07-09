@@ -1,0 +1,12 @@
+{
+  "files.associations": {
+    "*.hcl": "terraform",
+    "*.tf": "terraform"
+  },
+  "[terraform]": {
+    "editor.formatOnSave": true
+  },
+  "terraform-ls.experimentalFeatures": {
+    "validateOnSave": true
+  }
+}
