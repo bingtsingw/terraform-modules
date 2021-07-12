@@ -14,9 +14,9 @@ output "preview" {
   }
 }
 
-output "develop" {
+output "development" {
   value = {
-    qualifier = module.alias_develop.trigger.qualifier
+    qualifier = module.alias_development.trigger.qualifier
     service   = alicloud_fc_service.dev.name
     function  = alicloud_fc_function.dev.name
   }

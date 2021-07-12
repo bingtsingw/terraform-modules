@@ -62,11 +62,11 @@ resource "aliyun_fc_version" "dev" {
 }
 
 # alias
-module "alias_develop" {
+module "alias_development" {
   source = "./modules/alias"
 
   service_name    = alicloud_fc_service.dev.name
   function_name   = alicloud_fc_function.dev.name
   service_version = aliyun_fc_version.dev.id
-  alias_name      = "develop"
+  alias_name      = "development"
 }

@@ -83,3 +83,7 @@ variable "fc_instance_concurrency" {
 variable "fc_custom_container_image" {
   type = string
 }
+
+variable "fc_domain" {
+  type = string
+}
