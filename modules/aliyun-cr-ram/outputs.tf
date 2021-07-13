@@ -5,3 +5,7 @@ output "repo" {
 output "image" {
   value = local.image
 }
+
+output "region" {
+  value = var.region
+}
