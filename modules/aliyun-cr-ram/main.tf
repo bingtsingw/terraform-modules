@@ -41,14 +41,10 @@ resource "alicloud_ram_access_key" "ak" {
   user_name = module.ram.user.name
 }
 
-resource "random_string" "random" {
-  length = 16
-}
-
 resource "aliyun_cr_user_info_auth" "auth" {
   access_key = alicloud_ram_access_key.ak.id
   secret_key = alicloud_ram_access_key.ak.secret
-  password   = random_string.random.result
+  password   = var.docker_password
   region     = var.region
 }
 
