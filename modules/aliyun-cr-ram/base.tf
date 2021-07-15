@@ -3,5 +3,9 @@ terraform {
     alicloud = {
       source = "aliyun/alicloud"
     }
+
+    aliyun = {
+      source = "bingtsingw/aliyun"
+    }
   }
 }

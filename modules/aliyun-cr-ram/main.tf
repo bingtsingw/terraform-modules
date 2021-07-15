@@ -1,6 +1,7 @@
 locals {
-  image    = "${alicloud_cr_repo.repo.domain_list.public}/${alicloud_cr_repo.repo.id}:init"
-  registry = alicloud_cr_repo.repo.domain_list.public
+  image         = "${alicloud_cr_repo.repo.domain_list.public}/${alicloud_cr_repo.repo.id}:init"
+  registry      = alicloud_cr_repo.repo.domain_list.public
+  downloadImage = "bingtsingw/acr-init-http-server:latest"
 }
 
 resource "alicloud_cr_repo" "repo" {
@@ -11,7 +12,7 @@ resource "alicloud_cr_repo" "repo" {
 }
 
 module "ram" {
-  source = "github.com/bingtsingw/terraform-modules.git//modules/aliyun-ram-user-policy?ref=v0.11.0"
+  source = "github.com/bingtsingw/terraform-modules.git//modules/aliyun-ram-user-policy?ref=v0.15.2"
 
   name   = "cr-${var.name}"
   policy = <<EOF
@@ -36,13 +37,28 @@ module "ram" {
   EOF
 }
 
+resource "alicloud_ram_access_key" "ak" {
+  user_name = module.ram.user.name
+}
+
+resource "random_string" "random" {
+  length = 16
+}
+
+resource "aliyun_cr_user_info_auth" "demosharer_api" {
+  access_key = alicloud_ram_access_key.ak.id
+  secret_key = alicloud_ram_access_key.ak.secret
+  password   = random_string.random.result
+  region     = var.region
+}
+
 resource "null_resource" "image" {
   provisioner "local-exec" {
     interpreter = ["/bin/bash", "-c"]
     command     = <<EOF
       echo ${var.docker_password} | docker login -u ${var.docker_username} ${local.registry} --password-stdin
-      docker pull node:16-alpine
-      docker tag node:16-alpine ${local.image}
+      docker pull ${local.downloadImage}
+      docker tag ${local.downloadImage} ${local.image}
       docker push ${local.image}
       docker logout ${local.registry}
     EOF
