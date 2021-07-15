@@ -26,3 +26,7 @@ module "ram-user-oss" {
   }
   EOF
 }
+
+resource "alicloud_ram_access_key" "ak" {
+  user_name = module.ram-user-oss.user.name
+}
