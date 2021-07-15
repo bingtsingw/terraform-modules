@@ -10,7 +10,7 @@ resource "alicloud_oss_bucket_object" "oss" {
 }
 
 module "ram-user-oss" {
-  source = "github.com/bingtsingw/terraform-modules.git//modules/aliyun-ram-user-policy?ref=v0.11.0"
+  source = "github.com/bingtsingw/terraform-modules.git//modules/aliyun-ram-user-policy?ref=v0.17.0"
 
   name   = var.ram_name
   policy = <<EOF

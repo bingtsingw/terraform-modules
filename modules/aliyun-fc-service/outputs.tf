@@ -1,23 +1,11 @@
-output "production" {
-  value = {
-    qualifier = module.alias_production.trigger.qualifier
-    service   = alicloud_fc_service.prod.name
-    function  = alicloud_fc_function.prod.name
-  }
+output "user" {
+  value = module.ram-deploy.user
 }
 
-output "preview" {
-  value = {
-    qualifier = module.alias_preview.trigger.qualifier
-    service   = alicloud_fc_service.prod.name
-    function  = alicloud_fc_function.prod.name
-  }
+output "ak" {
+  value = alicloud_ram_access_key.ak.id
 }
 
-output "development" {
-  value = {
-    qualifier = module.alias_development.trigger.qualifier
-    service   = alicloud_fc_service.dev.name
-    function  = alicloud_fc_function.dev.name
-  }
+output "sk" {
+  value = alicloud_ram_access_key.ak.secret
 }

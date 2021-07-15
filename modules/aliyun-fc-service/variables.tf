@@ -84,6 +84,42 @@ variable "fc_custom_container_image" {
   type = string
 }
 
-variable "fc_domain" {
+variable "domain_name" {
+  type = string
+}
+
+variable "domain_record" {
+  type = string
+}
+
+variable "domain_cname" {
+  type = string
+}
+
+variable "domain_cert" {
+  type = string
+}
+
+variable "domain_key" {
+  type = string
+}
+
+variable "dcdn_domain_name" {
+  type = string
+}
+
+variable "dcdn_domain_record" {
+  type = string
+}
+
+variable "dcdn_scope" {
+  type = string
+}
+
+variable "dcdn_cert" {
+  type = string
+}
+
+variable "dcdn_key" {
   type = string
 }

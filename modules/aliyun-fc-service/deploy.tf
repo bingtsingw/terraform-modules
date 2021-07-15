@@ -4,7 +4,7 @@
 # - 添加触发器 (dev)
 # - 添加路由 (dev)
 module "ram-deploy" {
-  source = "github.com/bingtsingw/terraform-modules.git//modules/aliyun-ram-user-policy?ref=v0.11.0"
+  source = "github.com/bingtsingw/terraform-modules.git//modules/aliyun-ram-user-policy?ref=v0.17.0"
 
   name   = "${local.name_dash}-deploy"
   policy = <<EOF
@@ -53,10 +53,14 @@ module "ram-deploy" {
           "fc:GetCustomDomain",
           "fc:UpdateCustomDomain"
         ],
-        "Resource": "acs:fc:*:*:custom-domains/${var.fc_domain}"
+        "Resource": "acs:fc:*:*:custom-domains/${local.custom_domain}"
       }
     ],
     "Version": "1"
   }
   EOF
+}
+
+resource "alicloud_ram_access_key" "ak" {
+  user_name = module.ram-deploy.user.name
 }

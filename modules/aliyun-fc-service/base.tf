@@ -7,5 +7,9 @@ terraform {
     aliyun = {
       source = "bingtsingw/aliyun"
     }
+
+    updown = {
+      source = "mvisonneau/updown"
+    }
   }
 }
