@@ -12,10 +12,7 @@ resource "aliyun_dcdn_domain" "dcdn" {
 
 resource "aliyun_dcdn_domain_cert" "dcdn" {
   domain_name = aliyun_dcdn_domain.dcdn.domain_name
-  cert_name   = local.name_dash
-  cert_type   = "upload"
-  ssl_pub     = var.dcdn_cert
-  ssl_pri     = var.dcdn_key
+  cert_name   = var.dcdn_cert_name
 }
 
 resource "aliyun_dcdn_domain_config" "https_force" {

@@ -116,10 +116,6 @@ variable "dcdn_scope" {
   type = string
 }
 
-variable "dcdn_cert" {
-  type = string
-}
-
-variable "dcdn_key" {
+variable "dcdn_cert_name" {
   type = string
 }
