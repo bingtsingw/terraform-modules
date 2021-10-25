@@ -12,7 +12,9 @@ resource "aliyun_dcdn_domain" "dcdn" {
 
 resource "aliyun_dcdn_domain_cert" "dcdn" {
   domain_name = aliyun_dcdn_domain.dcdn.domain_name
-  cert_name   = var.dcdn_cert_name
+  cert_name   = local.name_dash
+  ssl_pub     = var.domain_cert
+  ssl_pri     = var.domain_key
 }
 
 resource "aliyun_dcdn_domain_config" "https_force" {

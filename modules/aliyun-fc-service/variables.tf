@@ -115,7 +115,3 @@ variable "dcdn_domain_record" {
 variable "dcdn_scope" {
   type = string
 }
-
-variable "dcdn_cert_name" {
-  type = string
-}
