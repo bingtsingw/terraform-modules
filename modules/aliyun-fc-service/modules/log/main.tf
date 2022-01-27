@@ -16,7 +16,8 @@ resource "alicloud_log_store_index" "index" {
   project  = alicloud_log_project.project.name
   logstore = alicloud_log_store.store.name
   full_text {
-    case_sensitive = false
-    token          = ""
+    case_sensitive  = false
+    include_chinese = false
+    token           = ", '\";=()[]{}?@&<>/:\n\t\r"
   }
 }
