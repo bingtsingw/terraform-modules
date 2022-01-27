@@ -14,3 +14,8 @@ variable "cors_rule" {
   type    = bool
   default = false
 }
+
+variable "ram" {
+  type    = bool
+  default = false
+}
