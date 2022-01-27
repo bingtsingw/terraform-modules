@@ -15,4 +15,16 @@ resource "alicloud_oss_bucket" "bucket" {
   transfer_acceleration {
     enabled = false
   }
+
+  dynamic "cors_rule" {
+    for_each = var.cors_rule ? [1] : []
+
+    content {
+      allowed_headers = ["*"]
+      allowed_methods = ["GET", "POST"]
+      allowed_origins = ["*"]
+      expose_headers  = []
+      max_age_seconds = 0
+    }
+  }
 }
