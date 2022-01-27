@@ -120,6 +120,8 @@ resource "alicloud_dns_record" "dcdn" {
 }
 
 module "health-check" {
+  count = var.dcdn_health_check ? 1 : 0
+
   source = "github.com/bingtsingw/terraform-modules.git//modules/updown-check?ref=v0.17.0"
 
   url    = "https://${alicloud_dns_record.dcdn.host_record}.${alicloud_dns_record.dcdn.name}/api/v.${module.alias_production.trigger.qualifier}/health"

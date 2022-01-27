@@ -115,3 +115,7 @@ variable "dcdn_domain_record" {
 variable "dcdn_scope" {
   type = string
 }
+
+variable "dcdn_health_check" {
+  type = bool
+}
