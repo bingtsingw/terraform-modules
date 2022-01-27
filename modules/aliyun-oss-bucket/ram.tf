@@ -1,6 +1,6 @@
 module "aliyun-oss-bucket-ram" {
   count  = var.ram ? 1 : 0
-  source = "github.com/bingtsingw/terraform-modules.git//modules/aliyun-ram-user-policy?ref=v0.20.0"
+  source = "../aliyun-ram-user-policy"
 
   name   = "oss-${var.bucket}-ram"
   policy = <<EOF
