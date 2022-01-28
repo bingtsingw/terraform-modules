@@ -36,7 +36,7 @@ resource "alicloud_dns_record" "dns" {
 }
 
 module "health-check" {
-  source = "github.com/bingtsingw/terraform-modules.git//modules/updown-check?ref=v0.17.0"
+  source = "../updown-check"
 
   url = "${qiniu_cdn_domain.domain.protocol}://${alicloud_dns_record.dns.host_record}.${alicloud_dns_record.dns.name}/${tolist(qiniu_cdn_domain.domain.source)[0].test_url_path}"
 }

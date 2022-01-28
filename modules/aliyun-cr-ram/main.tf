@@ -12,7 +12,7 @@ resource "alicloud_cr_repo" "repo" {
 }
 
 module "ram" {
-  source = "github.com/bingtsingw/terraform-modules.git//modules/aliyun-ram-user-policy?ref=v0.17.0"
+  source = "../aliyun-ram-user-policy"
 
   name   = "cr-${var.name}"
   policy = <<EOF
