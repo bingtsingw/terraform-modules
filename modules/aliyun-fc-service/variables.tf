@@ -84,6 +84,11 @@ variable "fc_custom_container_image" {
   type = string
 }
 
+variable "domain_config" {
+  type    = bool
+  default = true
+}
+
 variable "domain_name" {
   type = string
 }

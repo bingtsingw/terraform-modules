@@ -1,8 +1,10 @@
 locals {
-  custom_domain = "${alicloud_dns_record.custom_domain.host_record}.${alicloud_dns_record.custom_domain.name}"
+  custom_domain = var.domain_config ? "${alicloud_dns_record.custom_domain[0].host_record}.${alicloud_dns_record.custom_domain[0].name}" : ""
 }
 
 resource "alicloud_dns_record" "custom_domain" {
+  count = var.domain_config ? 1 : 0
+
   name        = var.domain_name
   host_record = var.domain_record
   type        = "CNAME"
@@ -10,6 +12,8 @@ resource "alicloud_dns_record" "custom_domain" {
 }
 
 resource "alicloud_fc_custom_domain" "custom_domain" {
+  count = var.domain_config ? 1 : 0
+
   domain_name = local.custom_domain
   protocol    = "HTTP,HTTPS"
 
